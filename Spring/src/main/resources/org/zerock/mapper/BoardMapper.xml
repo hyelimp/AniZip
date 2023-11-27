@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- MyBatis xml 파일 작성 시 반드시 mapper 태그의 namespace 속성값을
+     Mapper 인터페이스와 동일한 이름으로 설정해야 합니다. -->
+<mapper namespace="org.zerock.mapper.BoardMapper">
+
+	<!-- Page338 아래 BoardMapper.xml의 목록과 데이터 개수 처리 소스 코딩  -->
+	<!-- sql태그와 include 태그 활용 검색 데이터의 개수 처리 -->
+	<!-- MyBatis는 sql 태그를 이용해서 SQL의 일부를 별도로 보관하고,
+	         필요한 경우에 include 시키는 형태로 사용할 수 있습니다. -->
+	<sql id="criteria">
+			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>		
+		</trim>	
+	</sql>
+
+	<!-- select 태그의 id 속성값은 메서드의 이름과 일치하게 작성합니다.
+	     resultType 속성의 값은 select 쿼리의 결과를 특정 클래스의 객체로
+  	          만들기 위해서 설정합니다. -->	
+  	<!-- SELECT * from tbl_board WHERE bno > 0  -->
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
+	<!-- MyBatis xml 파일 작성에 사용한 CDATA 부분은 XML에서 부등호를
+	          사용하기 위해서 사용합니다. -->
+	<![CDATA[
+		SELECT * from tbl_board WHERE bno > 0
+	]]>	
+	</select>
+	
+	<!-- MyBatis는 내부적으로 JDBC의 PreparedStatement를 활용하고,
+	         필요한 파라미터를 처리하는 ?에 대한 치환은 #{속성}을 이용해서 처리합니다. -->
+	<!-- insert만 처리되고 생성된 PK 값을 알 필요가 없는 경우 -->
+	<!-- insert into tbl_board (bno, title, content, writer)
+         values (seq_board.nextval, '테스트 제목', '테스트 내용', 'user00') -->
+	<insert id="insert">
+		insert into tbl_board (bno, title, content, writer) values (seq_board.nextval, #{title}, #{content}, #{writer})
+	</insert>	
+	
+	<!-- insert문이 실행되고 생성된 PK 값을 알아야 하는 경우 -->
+	<insert id="insertSelectKey">
+	<!-- selectKey는 주로 PK값을 미리(BEFORE) SQL을 통해서 처리해 두고
+	          특정한 이름으로 결과를 보관하는 방식입니다. -->
+	     <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+	     	SELECT seq_board.nextval from dual
+	     </selectKey>
+	     insert into tbl_board (bno, title, content, writer) values (#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- SELECT * from tbl_board where bno = 3  -->
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		SELECT * from tbl_board where bno = #{bno}
+	</select>
+	
+	<!-- DELETE from tbl_board WHERE bno = 40 -->
+	<delete id="delete">
+		DELETE from tbl_board WHERE bno = #{bno}
+	</delete>
+
+	<!-- update 칼럼이 최종 수정 시간을 의미하는 칼럼이기 때문에 현재 시간으로 변경해 줍니다.
+	     regdate 칼럼은 최초 등록 생성 시간이므로 수정하지 않습니다. #{title}과 같은
+	          부분은 파라미터로 전달된 BoardVO 객체의 getTitle()과 같은 메서드들을
+	          호출해서 파라미터들이 처리 됩니다. -->
+	<!-- UPDATE tbl_board set title = '수정된 제목', content = '수정된 내용', writer = '김국진', updatedate = sysdate WHERE bno = 5 -->
+	<update id="update">
+		UPDATE tbl_board set title = #{title}, content = #{content}, writer = #{writer}, updatedate = sysdate WHERE bno = #{bno}
+	</update>
+	
+	<!-- 
+	SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
+	FROM (
+	SELECT
+	/*+ INDEX_DESC(tbl_board pk_board) */
+	ROWNUM rn, bno, title, content, WRITER, REGDATE, UPDATEDATE
+	from tbl_board
+	WHERE ROWNUM <= 20
+	)
+	WHERE RN > 10	
+	-->	
+	<!-- Page294 : 아래에 getListWithPaging 메서드 처리 태그를 추가해 줍니다. -->
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, replyCnt
+		FROM (
+			SELECT
+			/*+ INDEX_DESC(tbl_board pk_board) */
+			ROWNUM rn, bno, title, content, WRITER, REGDATE, UPDATEDATE, replyCnt
+			from tbl_board
+			WHERE
+		]]>
+		
+		<!-- Page339 include 태그 삽입 적용함 -->
+		<include refid="criteria"></include>
+		
+		
+	  <!-- foreach 태그를 이용해서 검색 조건을 처리하는데 typeArr 속성을 이용합니다.
+	      MyBatis는 원하는 속성을 찾을 때 getTypeArr() 메서드와 같이 이름에 기반을
+	           두어서 검색하기 때문에 Criteria에서 만들어둔 getTypleArr() 메서드 결과문인
+	            문자열의 배열이 foreach의 대상이 됩니다. 참고로, MyBatis는 엄격하게
+	      Java Beans 규칙을 따르지 않고, get/set 메서드만을 활용하는 방식입니다.
+	   	  choose 안쪽의 동적 SQL은 'OR title... OR content... OR writer...'
+  	   	   와 같은 구문을 만들어내게 됩니다. 그래서 바깥쪽에서는 trim을 이용해서 맨 앞에서
+	   	   생성되는 'OR'를 없애줍니다.
+	   -->
+	   <!-- 
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>		
+		</trim>
+		 -->
+		
+			
+		<![CDATA[
+			 ROWNUM <= #{pageNum} * #{amount}
+			)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+		]]>	
+	</select>
+	
+	<!-- 
+	SELECT COUNT(*) from tbl_board WHERE bno > 0
+	 -->
+	<!-- Page339 소스 코딩할 때 아래 3줄 구문은 주석 처리해 줍니다. -->
+	<!-- 
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) from tbl_board WHERE bno > 0
+	</select>
+	 -->
+	
+	 <!-- Page339  소스 하단 select 태그 id="getTotalCount" 소스 코딩 -->
+	 <!-- 위에 sql 태그는 id 속성을 이용해서 필요한 경우에 동일한 SQL의 일부를
+	           재사용할 수 있게 합니다. -->
+ 	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) from tbl_board
+		WHERE
+		<include refid="criteria"></include>
+		
+		bno > 0
+		
+	</select>    
+	
+<!-- Page482, Page483 댓글이 추가되면 반정규화된 tbl_board 테이블에 replycnt 칼럼이
+         업데이트 되어야 하기 때문에 BoardMapper.xml에 updateReplyCnt 구문을 추가해야만 합니다 -->	
+	<!-- 
+	update tbl_board set replycnt = replycnt + 10
+WHERE bno = 721001
+	 -->   
+	 
+	 <update id="updateReplyCnt">
+	 update tbl_board set replycnt = replycnt + #{amount}
+WHERE bno = #{bno}	 
+	 </update>  
+
+</mapper>

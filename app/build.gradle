@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.androidstudy.toolbarscrollviewexample"
+//        minSdkVersion 16을 19로 변경해 줍니다
+        minSdkVersion 19
+//        targetSdkVersion 33을 30으로 변경해 줍니다
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    //youtube 라이브러리 추가
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+
+    // 구글 맵 라이브러리 2개를 추가해 줍니다.
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+//  implementation 'androidx.appcompat:appcompat:1.6.1' 을 1.2.0으로 변경해 줍니다
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+//  implementation 'com.google.android.material:material:1.9.0'을 1.6.0으로 변경해 줍니다
+    implementation 'com.google.android.material:material:1.6.0'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

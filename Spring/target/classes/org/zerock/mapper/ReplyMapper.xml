@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- MyBatis xml 파일 작성 시 반드시 mapper 태그의 namespace 속성값을
+     Mapper 인터페이스와 동일한 이름으로 설정해야 합니다. -->
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+
+	<!-- 
+	INSERT into tbl_reply(rno, bno, reply, replyer)
+	VALUES (seq_reply.nextval, 721002, '댓글 01 테스트', '댓글러')	
+	-->
+	<insert id="insert">
+		INSERT into tbl_reply(rno, bno, reply, replyer)
+		VALUES (seq_reply.nextval, #{bno}, #{reply}, #{replyer})	
+	</insert>
+	
+	<!-- 
+		SELECT * from tbl_reply WHERE rno = 12
+	 -->
+	<select id="read" resultType="org.zerock.domain.ReplyVO">
+		SELECT * from tbl_reply WHERE rno = #{rno}	
+	</select>
+	
+	
+	<!-- 
+		DELETE from tbl_reply WHERE rno = 12
+	 -->
+	<delete id="delete">
+		DELETE from tbl_reply WHERE rno = #{rno}	
+	</delete>
+	
+	<!-- 
+		UPDATE tbl_reply set reply = '댓글 수정 테스트', updatedate = sysdate WHERE rno = 14
+	 -->
+	<update id="update">
+		UPDATE tbl_reply set reply = #{reply}, updatedate = sysdate WHERE rno = #{rno}
+	</update>
+	
+	<!-- 
+	SELECT rno, bno, reply, replyer, replyDate, updatedate
+	FROM tbl_reply
+	WHERE bno = 720973
+	ORDER BY rno asc
+	 -->
+	<!-- 
+	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+	SELECT rno, bno, reply, replyer, replyDate, updatedate
+	FROM tbl_reply
+	WHERE bno = #{bno}
+	ORDER BY rno asc	
+	</select>
+	 -->
+	 
+	 <!-- 
+	 	Page431 ReplyMapper.xml 파일에 getListWithPaging 쿼리문 소스 코딩
+	  -->
+	  <select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+	  <![CDATA[
+	  select rno, bno, reply, replyer, replydate, updatedate
+	  from
+		(
+		select /*+ INDEX(tbl_reply idx_reply) */
+		rownum rn, rno, bno, reply, replyer, replyDate, updatedate
+		from tbl_reply
+		where bno = #{bno}  
+		and rno > 0
+		and rownum <= #{cri.pageNum} * #{cri.amount}
+		) where rn > (#{cri.pageNum} - 1) * #{cri.amount}
+	 ]]>	 
+	 </select>
+	 
+	 <!-- 
+	 	SELECT COUNT(RNO) FROM tbl_reply WHERE BNO = 721001
+	  -->
+	 <select id="getCountByBno" resultType="int">
+	 <![CDATA[
+	 	SELECT COUNT(RNO) FROM tbl_reply WHERE BNO = #{bno}
+	 ]]> 
+	 </select>
+
+</mapper>

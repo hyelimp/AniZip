@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 앱 버튼 시작점 0dp부터 설정
+       app:contentInsetStart="0dp" -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#03045e"
+        android:fontFamily="@font/skybory"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnMain"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="#023e8a"
+            android:fontFamily="@font/skybory"
+            android:text="메인\n으로"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="#023e8a"
+            android:fontFamily="@font/skybory"
+            android:text="코믹\n월드"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnContent"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="#023e8a"
+            android:fontFamily="@font/skybory"
+            android:text="애니\n목록"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btnLocation"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="#023e8a"
+            android:fontFamily="@font/skybory"
+            android:text="회사\n위치"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#023e8a"
+            android:fontFamily="@font/skybory"
+            android:text="로그\n아웃"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
