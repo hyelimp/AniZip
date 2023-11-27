@@ -1,0 +1,167 @@
+@charset "utf-8";
+
+
+/* 하남다움체 */
+/* https://noonnu.cc/font_page/1144 */
+@font-face {
+    font-family: 'HANAMDAUM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.QaA_body{
+  width: 100%;
+  height: 160vh;
+  margin-bottom: 3%;
+  background-image: url('../images_src/back13.jpg') ; /* 배경 이미지 파일 경로로 변경하세요 */
+}
+.qnaAccordion{
+    width: 50%;
+    text-align: center;
+    margin: 2% 25%;
+}
+.accordion-button{
+    background-color: rgb(23, 53, 134);
+    font-weight: bold;
+    font-family: 'Dongle', sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    color: rgb(206, 235, 255);
+}
+
+.accordion-body{
+    background-color: lightgray;
+    font-weight: bold;
+    font-family: 'Dongle', sans-serif;
+    font-size: 3vh;
+}
+
+.secondbody{
+    margin: 15vh 25vh;
+    width: 60%;
+    height: 100%;
+    background-color:rgba(243, 212, 243, 0.5);
+    border-radius: 1vh;
+}
+
+
+.QnATitle{
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1vh;   
+}
+.QnATitleh2{
+    opacity: 1;
+    height: 4vw;
+    width: 43%;
+    margin: 10% 29%;
+    text-align: center;
+    border-radius: 5vh;
+    background-color: #fbcbca;
+    font-family: 'Dongle', sans-serif;
+    font-size: 3.5vw;
+    letter-spacing: 0.5vw;
+}
+.QnAmaintitle{
+    margin: 5% 35%;
+    background-color: #fbcbca;
+    border-radius: 5vh;
+    width: 30%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vw;
+    letter-spacing: 0.1vw;
+}
+
+.input_title{
+    width: 70%;
+    height: 5vh;
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5vw;
+    text-align: center;
+}
+.QnAContent{
+    margin: 5% 35%;
+    background-color: #fbcbca;
+    border-radius: 5vh;
+    width: 30%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vw;
+    letter-spacing: 0.1vw;
+}
+.input_content{
+    width: 70%;
+    height: 30vh;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.QnAwriter{
+    margin: 5% 35%;
+    background-color: #fbcbca;
+    border-radius: 5vh;
+    width: 30%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vw;
+    letter-spacing: 0.1vw;
+}
+
+.input_writer{
+    width: 50%;
+    height: 5vh;
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+.QnAnumber{
+    margin: 5% 35%;
+    background-color:#fbcbca;
+    border-radius: 5vh;
+    width: 30%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    letter-spacing: 0.1vw;
+}
+.input_number{
+    width: 50%;
+    height: 5vh;
+    margin: 1vh 20%;
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5vw;
+    text-align: center;
+}
+.sbtn{
+    background-color: #fbcbca;
+    margin: 4vh 1vh ;
+    border-color:  rgb(245, 212, 141);
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5vw;
+}
+.cbtn{
+    background-color:  #fbcbca;
+    border-color:  rgb(245, 212, 141);
+    margin: 4vh 1vh ;
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.5vw;
+}
+
+@media (max-width: 991.98px){
+    .secondbody{
+       margin: auto;
+    }
+    .accordion-button{
+        font-size: 1.5vh;
+    }
+ .accordion-body{
+    font-size: 1.2vh;
+}
+    .QaA_body{
+        height: 100vh;
+        margin-bottom: 10%;
+      }
+}

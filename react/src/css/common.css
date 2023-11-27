@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+#navnavbar{
+    background-color: #f7dbdc !important;
+}
+
+.logo{
+    display: flex !important;
+    align-items: center !important;
+    height: 10vh !important;
+    margin-left: 3vh;
+}
+
+.logo img{
+    width: 40%;
+    margin-left: 10%;
+}
+.me-auto{
+    width: 65%;
+    margin-left: 11%;  
+    font-weight: bold;
+    font-size: 1.8vw;
+    font-family: 'Dongle', sans-serif;  
+}
+
+/* 미디어 쿼리 : 태블릿 992px 미만 적용 */
+/* 0.02px을 빼는 이유 = 브라우저는 현재 범위 컨텍스트 쿼리를
+지원하지 않으므로 더 높은 정밀도의 값을 사용하여 분수 너비
+(예 : 높은 dpi 기기의 특정 조건에서 발생할 수 있음)가 있는
+min- 및 max- 접두사 및 뷰포트의 제한 사항을 해결하기 위해서 입니다. */
+/* 초소형 세로폰 : 576px 미만, max-width: 575.98px */
+/* 소형 가로폰 : 768px 미만, max-width: 767.98px */
+/* 데스크톱 PC : 1200px 미만, max-width: 1199.98px */
+/* 대형 데스크탑 PC : 1400px 미만, max-width: 1399.98px */
+@media (max-width: 991.98px){
+    .logo img{
+        width: 15vw;
+    }
+}
