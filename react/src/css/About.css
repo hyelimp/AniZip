@@ -1,0 +1,152 @@
+.abaout_container{
+  margin-top: 30vh;
+}
+.about_borad1{
+width: 100%;
+height: 20vw;
+font-size: 10vw;
+display: inline-block;
+}
+.fade_right{
+color:#9D4AD6;
+margin-left: 30%;
+}
+.about_borad1 h1{
+font-size: 5vw;
+width: 30%;
+height: 50%;
+float: left;
+margin-left: 10%;
+font-family: 'Dongle', sans-serif;
+}
+.about_borad1 .sub_1{
+float: right;
+width: 40%;
+font-size: 3vw;
+color: #9D4AD6;
+letter-spacing: normal;
+font-weight: bold;
+margin-right: 2vw;
+font-family: 'Dongle', sans-serif;
+}
+.about_borad1 .sub_2{
+float: right;
+width: 42%;
+font-size: 1.8vw;
+margin-right: 2vw;
+color: rgb(31, 30, 30);
+letter-spacing: normal;
+line-height: 2vw;
+font-family: 'Dongle', sans-serif;
+}
+
+hr{
+margin-top: 12vw;
+}
+.about_F1{
+height: 32vw;
+margin-top: 10vw;
+
+}
+.about_F1>img{
+background: url(../images_src/about2.svg) no-repeat  left,top;
+width: 40%;
+height: 70%;
+margin-left: 3vw;
+float: left; 
+}
+.Fh1{
+float: right;
+width: 40%;
+color: #9D4AD6;
+letter-spacing: normal;
+text-align: center;
+font-family: 'Dongle', sans-serif;
+font-size: 3vw;
+font-weight: bold;
+}
+.about_F2{
+height: 32vw;
+margin-top: 10vw;
+}
+.about_F3{
+height: 32vw;
+margin-top: 10vw;
+}
+.about_F4{
+height: 10vw;
+margin-top: 10vw;
+}
+
+.Fh2{
+float: right;
+width: 43%;
+font-size: 1.8vw;
+text-align: center;
+color: rgb(31, 30, 30);
+letter-spacing: normal;
+line-height: 2vw;
+margin-top: 1vw;
+font-family: 'Dongle', sans-serif;
+}
+
+.about_F2>img{
+background: url(../images_src/about1.svg) no-repeat center;
+width: 40%;
+height: 70%;
+margin-left: 3vw;
+float: left; 
+}
+.Fh3{
+  float: right;
+  width: 40%;
+  font-size: 3vw;
+  color: #9D4AD6;
+  letter-spacing: normal;
+  text-align: center;
+  font-family: 'Dongle', sans-serif;
+  font-weight: bold;
+  }
+.Fh4{
+  float: right;
+  width: 43%;
+  font-size: 1.8vw;
+  text-align: center;
+  color: rgb(31, 30, 30);
+  letter-spacing: normal;
+  line-height: 2vw;
+  margin-top: 1vw;
+  font-family: 'Dongle', sans-serif;
+  }
+
+
+
+.about_F3>img{
+  background: url(../images_src/about3.svg) no-repeat  center ;
+  width: 40%;
+  height: 70%;
+  margin-left: 3vw;
+  float: left; 
+}
+.Fh5{
+float: right;
+width: 49%;
+font-size: 3vw;
+color: #9D4AD6;
+letter-spacing: normal;
+text-align: center;
+font-weight: bold;
+font-family: 'Dongle', sans-serif;
+
+}
+.Fh6{
+float: right;
+width: 49%;
+font-size: 1.8vw;
+text-align: center;
+color: rgb(31, 30, 30);
+letter-spacing: normal;
+line-height: 2vw;
+margin-top: 1vw;
+font-family: 'Dongle', sans-serif;
+}
