@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+/* 하남다움체 */
+/* https://noonnu.cc/font_page/1144 */
+@font-face {
+    font-family: 'HANAMDAUM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Dongle', sans-serif;
+}
+
+
+.Banner{
+    width: 100%;
+    height: 25vw;
+    margin: 2vw;
+    margin-bottom: 3vw;
+}
+.bannerbtn{
+text-align: center;
+border-radius: 0;
+float: right;
+}
+.carousel-inner{
+    width: 100%;
+}
+
+.carousel-inner img{
+    width: 100%;
+    border-radius: 1vw 1vw 1vw 1vw;
+}
+
+
+
+/* 공지사항 및 인기게시글 */
+.wrapper{
+    width: 100%;
+    height: 37vh;
+    margin-top: 6vw;    
+    margin-left: 2vw;
+    font-family: 'Dongle', sans-serif;
+    font-size: 3vh;
+}
+
+
+.tabscont{
+    width: 100%;
+    height:100%;
+    margin-top: 10vh;
+
+}
+
+.tabscont ul:first-child{
+    width: 100%;
+    float: left;
+}
+
+.tabscont ul li:first-child{
+    width: 50%;
+}
+
+.tabscont ul li:last-child{
+    width: 50%;
+}
+
+/* 탭 상단 제목 버튼 크기 설정 */
+.tabscont button{
+    width: 100%
+}
+
+
+.inform ul{
+    padding-left: 0;
+}
+
+.inform li{
+    width: 100% !important;
+    padding: 1vh 2vh 1vh 3vh;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    border-bottom: 1px solid lightgrey;
+
+}
+
+.inform li a{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+ /* 새로운 애니 */
+.mainp1{
+    font-size: 4vh;
+    text-align: center;
+    margin-top: 13vw;
+    font-weight: bold;
+}
+/* 새로 들어온 애니메이션 */
+.d-block1{
+    float: left;
+    width: 31%; 
+    margin-left:2%;
+    border-radius: 1vh;
+    height: 22vh;
+ }
+ .d-block2{
+    float: left;
+    /* width: 18vw;*/
+    width: 31%; 
+    margin-left:2%;
+    border-radius: 1vh;
+    height: 22vh;
+ }
+ .d-block3{
+    float: left;
+    width: 31%; 
+    margin-left:2%;
+    border-radius: 1vh;
+    height: 22vh;
+ }
+
+.content1{
+    width: 100%;
+    height: 28vh;
+    margin: 2vw 0;
+    font-family: 'Dongle', sans-serif;
+    font-size: 2vh;
+}
+
+/* 애니추가 이름 */
+.ccont2{
+    width: 100%;
+    height: 4vw;
+    display: flex;
+
+}
+.ccont2p1{
+    width: 27%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3vh;
+    margin: 1vw 4vw;
+
+}
+.ccont2p2{
+    width: 28%;
+    text-align: center;
+    margin: 1vw 4vw;
+    font-weight: bold;
+    font-size: 3vh;
+   
+}
+.ccont2p3{
+    width: 28%;
+    text-align: center;
+    margin: 1vw 4vw;
+    font-weight: bold;
+    font-size: 3vh;
+  
+}
+
+
+.content2{
+    width: 100%;
+    height: 30vw;
+    margin-top: 4vw;
+    text-align: center;
+}
+
+.content3{
+    margin: 12vw 0;
+}
+
+.ccont4{
+    width: 100%;
+    height: 3vw;
+    display: flex;
+    font-family: 'Dongle', sans-serif;
+    /* background-color: red; */
+}
+
+.ccont4p4{
+    width: 27%;
+    text-align: center;
+    margin: 1vw 2vw;
+    font-weight: bold;
+    font-size: 3vh;
+}
+.ccont4p5{
+    width: 28%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3vh;
+    margin: 1vw 2vw;
+}
+.ccont4p6{
+    width: 28%;
+    text-align: center;
+    margin: 1vw 2vw;
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+
+@media (max-width: 991.98px){
+    .me-auto{
+        width: 70%;
+        font-size: 2vh;
+        text-align: center;
+    }
+}
